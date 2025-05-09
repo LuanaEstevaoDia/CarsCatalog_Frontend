@@ -1,17 +1,30 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Dependências do Node.js
+node_modules/
+package-lock.json
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Build e cache
+dist/
+.angular/
+.vite/
+.tmp/
+.out-tsc/
+.bazel-out/
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# Configurações do ambiente
+.env
+.env.local
+.env.development
+.env.production
 
-# IDEs and editors
+# Logs e arquivos temporários
+npm-debug.log*
+yarn-error.log*
+*.log
+logs/
+debug.log
+
+# Arquivos do editor
+.vscode/
 .idea/
 .project
 .classpath
@@ -19,35 +32,26 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.history/
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
+# Arquivos de teste e cobertura
 /coverage
 /libpeerconnection.log
 testem.log
 /typings
 
-# System files
+# Arquivos do sistema
 .DS_Store
 Thumbs.db
 
-# Arquivos de configuração sensíveis
-.env
-.env.local
-.env.development
-.env.production
+# Ignorar arquivos do Angular e Vite
+.angular/cache/
+.vite/cache/
 
-# Logs e arquivos temporários
-*.log
-logs/
-debug.log
+# Ignorar arquivos do MDB Angular UI Kit (se aplicável)
+mdb-angular-ui-kit_*.js
+mdb-angular-ui-kit_*.js.map
+
+# Ignorar arquivos do SweetAlert2 (se aplicável)
+sweetalert2.js
+sweetalert2.js.map
