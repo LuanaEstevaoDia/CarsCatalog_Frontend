@@ -1,0 +1,141 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header">
+              <button type="button" class="close direita" (click)="close()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            <form (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="model">Modelo</label>
+                <input
+                  type="text"
+                  id="model"
+                  class="form-control"
+                  [(ngModel)]="car.model"
+                  name="model"
+                  required
+                />
+              </div>
+  
+              <div class="form-group">
+                <label for="years">Ano</label>
+                <input
+                  type="number"
+                  id="years"
+                  class="form-control"
+                  [(ngModel)]="car.years"
+                  name="years"
+                  required
+                />
+              </div>
+  
+              <div class="form-group">
+                <label for="chassi">Chassi</label>
+                <input
+                  type="text"
+                  id="chassi"
+                  class="form-control"
+                  [(ngModel)]="car.chassi"
+                  name="chassi"
+                  required
+                />
+              </div>
+  
+              <div class="form-group">
+                <label for="price">Preço</label>
+                <input
+                  type="number"
+                  id="price"
+                  class="form-control"
+                  [(ngModel)]="car.price"
+                  name="price"
+                  required
+                  
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="model">Marca</label>
+                <input
+                  type="text"
+                  id="make"
+                  class="form-control"
+                  [(ngModel)]="car.make"
+                  name="model"
+                  required
+                />
+              </div>
+              <br>
+  
+              <!-- Campos comentados para uso futuro -->
+              <!-- <div class="form-group">
+                <label for="make">Marca</label>
+                <select
+                  id="make"
+                  class="form-control"
+                  [(ngModel)]="car.make.id"
+                  name="make"
+                  required
+                >
+                  <option *ngFor="let make of makes" [value]="make.id">
+                    {{ make.name }}
+                  </option>
+                </select>
+              </div>
+  
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select
+                  id="status"
+                  class="form-control"
+                  [(ngModel)]="car.status"
+                  name="status"
+                >
+                  <option value="NOVO">Novo</option>
+                  <option value="USADO">Usado</option>
+                  <option value="DANIFICADO">Danificado</option>
+                </select>
+              </div> -->
+             <div>
+              @if (!isEditing || car.make == null) {
+                <button type="button"  class="btn btn-primary btn-rounded"(click)="searchBrand()">Buscar Marca</button>
+             
+            }@else {
+              <span class="text-primary">Make: {{car.make.name}} </span>
+              <button type="button" class="btn btn-warning btn-rounded" (click)="changeBrand()">Trocar Marca</button>
+            }
+             <br>
+             <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary btn-rounded">Salvar</button>
+             </div>
+             
+             </div>
+             <ng-template #modalMake>
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+              <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              (click)="modalRef.close()"
+              ></button>
+              </div>
+              <div class="modal-body">
+              
+               <app-makelist [hideBottons]="true" (return)="returnMake($event)"></app-makelist>
+              </div>
+              
+              
+              </ng-template>
+              
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  

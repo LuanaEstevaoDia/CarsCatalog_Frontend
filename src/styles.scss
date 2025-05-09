@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+/* Importações existentes */
+@import '@fortawesome/fontawesome-free/css/all.css';
+@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+
+/* Estilos existentes */
+.centralizar {
+    text-align: center;
+}
+
+.direita {
+    text-align: right;
+}
+
+body {
+    background-color: rgb(222, 222, 227);
+}
+
+/* Novos estilos para modal */
+.modal-body {
+    position: relative;
+    z-index: 1050; /* Certifique-se de que a modal está acima de outros elementos */
+    overflow: auto; /* Permite rolagem se necessário */
+}
+
+.modal-header, .modal-body {
+    pointer-events: auto; /* Garante que os eventos de clique funcionem dentro da modal */
+}
+
+.cdk-overlay-container {
+    z-index: 1050; /* Certifique-se de que o contêiner da modal está acima de outros elementos */
+    pointer-events: none; /* Evita interação fora da modal */
+}
+.table {
+    width: 100%;
+  }
+  
+  .table th,
+  .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .preco-column {
+    text-align: right; /* Alinha o conteúdo à direita */
+    width: 15%; /* Ajuste a largura conforme necessário */
+  }
+
+  
+  
+
+
+
