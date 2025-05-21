@@ -1,0 +1,15 @@
+.navbar {
+    background-color: (0,0,0,0.7);//deixou a barra de menu trasparente.
+    position: relative;
+    top: 100px; /* Move a Navbar para baixo */
+
+
+}
+.navbar-brand,
+.navbar-toggler {
+  color: white !important; /* Força a cor branca */
+}
+
+.navbar a {
+  color: white !important;
+}

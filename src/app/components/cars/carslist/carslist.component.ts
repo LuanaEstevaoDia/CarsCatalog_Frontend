@@ -8,6 +8,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { CarService } from '../../../services/car.service';
 import { Make } from '../../../models/make';
 
+
 @Component({
   selector: 'app-carslist',
   standalone: true,
@@ -24,6 +25,7 @@ export class CarslistComponent {
   router = inject(Router)
   carForm: FormGroup;
   
+  
   constructor(private fb: FormBuilder) {
 
 
@@ -37,8 +39,10 @@ export class CarslistComponent {
     this.getAllCars();
     let carNew = history.state.carNew;
     let carEdit = history.state.carEdit;
+    
     if (carNew != null) {
       this.list.push(carNew);
+      
     }
     if (carEdit != null) {
       let indice = this.list.findIndex((x) => {
@@ -49,6 +53,7 @@ export class CarslistComponent {
   }
 
   getAllCars() {
+    console.log("Listagem de carros!")
     this.carService.getAllCars().subscribe({
       next: list => { // quando o back retorna o que se espera, igual try
         this.list = list;
@@ -64,7 +69,7 @@ export class CarslistComponent {
   }
 
   deleteById(car: Car) {
-    console.log("Chegou aqui");
+    console.log("Acesso no método de deletar");
     Swal.fire({
       title: 'Tem certeza que deseja deletar esse registro?',
       icon: 'warning',
@@ -98,17 +103,33 @@ export class CarslistComponent {
   }
 
   new() {
+    console.log("Método para buscar a rota para salvar veículo!")
     this.router.navigate(['admin/carros/new'])
+
+  
+
+
+  
+    
   }
 
  edit(car: Car, id: number) {
- 
+   
     this.router.navigate([`admin/carros/edit/${id}`]);
+   
+   
+    
   } 
   resetForm(){
     this.carForm.reset();
   }
-}
+ 
+    
+
+
+
+  }
+
 
     
      

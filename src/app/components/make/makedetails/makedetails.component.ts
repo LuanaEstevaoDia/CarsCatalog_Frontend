@@ -33,7 +33,7 @@ export class MakedetailsComponent implements OnInit {
 
   // Método para obter os detalhes da marca pelo ID
   getMakeById(id: number): void {
-    console.log(`Chamando API para obter detalhes do carro com ID: ${id}`);
+    console.log(`Chamando API para obter detalhe da marca com ID: ${id}`);
     this.makeService.getMakeById(id).subscribe({
       next: (makeData) => {
         this.make = makeData;
@@ -58,18 +58,19 @@ export class MakedetailsComponent implements OnInit {
       // Atualização da marca
       this.makeService.updateMake(this.make, this.make.id!).subscribe({
         next: (response: any) => {
-          console.log('Veículo atualizado com sucesso!', response.message);
+          console.log('Marca atualizada com sucesso!', response.make);
+          console.log('Marca atualizada', response.message);
           Swal.fire({
             title: response.message,
             icon: 'success',
             confirmButtonText: 'Ok',
           });
-          this.router.navigate([`admin/carros/edit/${this.make.id}`], {
+          this.router.navigate([`admin/marcas`], {
             state: { makeEdit: this.make },
           });
         },
         error: (err) => {
-          console.error('Erro ao atualizar veículo:', err);
+          console.error('Erro ao atualizar marca:', err);
           Swal.fire({
             title: err.error.message,
             icon: 'error',
@@ -87,13 +88,13 @@ export class MakedetailsComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Ok',
           });
-          this.router.navigate([`admin/marcas/edit/${response.make.id}`], {
+          this.router.navigate([`admin/marcas`], {
             state: { makeNew: response.make },
           });
           this.makeSaved.emit(); // Emite evento após salvar
         },
         error: (err) => {
-          console.error('Erro ao salvar veículo:', err);
+          console.error('Erro ao salvar marca:', err);
           Swal.fire({
             title: err.error.message,
             icon: 'error',

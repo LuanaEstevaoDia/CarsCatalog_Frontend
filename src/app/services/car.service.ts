@@ -14,6 +14,7 @@ export class CarService {
   constructor() {}
 
   getAllCars(): Observable<Car[]>{
+    console.log(`Fazendo chamada GET  ${this.API}/all` )
     return this.http.get<Car[]>(this.API +"/all");
   }
   deleteCar(id: number): Observable<string>{

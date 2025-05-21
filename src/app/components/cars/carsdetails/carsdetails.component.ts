@@ -10,6 +10,7 @@ import { MakelistComponent } from "../../make/makelist/makelist.component";
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { TemplateRef } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
+import { CarslistComponent } from '../carslist/carslist.component';
 
 @Component({
   selector: 'app-carsdetails',
@@ -19,9 +20,11 @@ import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
   styleUrls: ['./carsdetails.component.scss'],
 })
 export class CarsdetailsComponent implements OnInit {
-  car: Car = new Car('', 0, '', 0, new Make('', '')); // Instancia inicial com o relacionamento com marca
-  @Output() carSaved = new EventEmitter<void>();
+  car: Car = new Car('', 0, '', 0, new Make('', ''));// Instancia inicial com o relacionamento com marca
+  @Output() onUpdateListCars = new EventEmitter<void>();
   isEditing = false; //verifica e estamos criando ou editando um carro.
+  
+  
 
    //ELEMENTOS DA MODAL
    modalService = inject(MdbModalService); //para abrir a modal
@@ -32,7 +35,8 @@ export class CarsdetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private carService: CarService
+    private carService: CarService,
+   
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +73,7 @@ export class CarsdetailsComponent implements OnInit {
   // Método para salvar ou atualizar o carro
   save(): void {
     console.log('Método save chamado. Dados do carro:', this.car);
+    console.log("Id do carro", this.car.id);
 
     if (this.car.id) {
       // Atualização do carro
@@ -80,9 +85,22 @@ export class CarsdetailsComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Ok',
           });
+          
           this.router.navigate([`admin/carros/edit/${this.car.id}`], {
             state: { carEdit: this.car },
+            
+
+            
           });
+       
+          this.close();
+          
+           
+           
+          
+           
+         
+          
         },
         error: (err) => {
           console.error('Erro ao atualizar veículo:', err);
@@ -97,12 +115,11 @@ export class CarsdetailsComponent implements OnInit {
       // Criação de novo carro
       this.carService.saveCar(this.car).subscribe({
         next: (response: any) => {
-          console.log('Novo carro salvo com sucesso:', response);
-          if(!response || !response.id){
-            console.error("Erro: O id do carro não está sendo retornado corretamente");
-            return;
-          }
-          this.car.id = response.id;
+          console.log('Novo carro salvo com sucesso:', response.message);
+          console.log("Objeto car dentro da resposta",response.car);
+          console.log("Objeto ID", response.car.id);
+          this.car.id = response.car.id;
+          
 
           Swal.fire({
             title: response.message,
@@ -111,8 +128,18 @@ export class CarsdetailsComponent implements OnInit {
           });
           this.router.navigate([`admin/carros/edit/${this.car.id}`], {
             state: { carNew: this.car },
+            
+        
+           
           });
-          this.carSaved.emit(); // Emite evento após salvar
+
+          
+           this.close();
+        
+
+       
+
+           
         },
         error: (err) => {
           console.error('Erro ao salvar veículo:', err);
@@ -130,7 +157,8 @@ export class CarsdetailsComponent implements OnInit {
   onSubmit(): void {
     console.log('Submissão iniciada.');
     this.save();
-    this.close();
+   
+   
     
   } 
 
@@ -143,6 +171,7 @@ export class CarsdetailsComponent implements OnInit {
     //buscar marca
     console.log("Buscando marca");
     this.modalRef = this.modalService.open(this.modalMake,{modalClass: "modal-lg"});
+
     
 
   }
@@ -157,5 +186,14 @@ export class CarsdetailsComponent implements OnInit {
   
     this.car.make = make; // Agora a marca tem um ID válido
     this.modalRef.close(); // Fecha a modal
+  }
+
+  //método que deixa deletar ou corrigir uma marca caso não tenha vículo com nenhum carro
+  carLink(){
+    if(this.car.model == null || !this.car.model){
+      console.log("A marca não está vínculada")
+      
+    }
+
   }
 }
