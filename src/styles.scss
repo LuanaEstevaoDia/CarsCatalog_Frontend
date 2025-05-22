@@ -13,15 +13,16 @@
     text-align: right;
 }
 
-.body {
-      background-color: #95a67d;
-
-     background-image:url('/assets/images/logo_marcas.png');
+body {
+    
+    background-color:#95a67d;
+    background-image: url('/assets/images/logos.png');
+     
      background-size: contain;
                   
    
 }
-//Adição de método para ajustar a imagem a tela, comprementando o método body.
+//Adição de elemento para ajustar a imagem a tela, comprementando o método body.
 html, body {
   margin: 0;
   padding: 0;
