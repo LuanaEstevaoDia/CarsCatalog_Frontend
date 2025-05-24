@@ -1,12 +1,12 @@
 <div class="container mt-4">
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12 topo">
         <div class="card">
           <div class="card-body">
               <h3>LISTAGEM DE MARCAS</h3>
   
               <div class="direita">
-                  <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="new()">
+                  <button type="button" class="btn btn-custom btn-rounded" mdbRipple (click)="new()">
                   Novo
                   </button>
               </div>
@@ -39,10 +39,10 @@
                                
 
                             
-                                <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="edit(make,make.id)">
+                                <button type="button" class="btn btn-custom btn-rounded" mdbRipple (click)="edit(make,make.id)">
                                     Editar
                                 </button>
-                                <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="deleteById(make)">
+                                <button type="button" class="btn btn-delete btn-rounded" mdbRipple (click)="deleteById(make)">
                                     Deletar
                                 </button>
 

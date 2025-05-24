@@ -1,10 +1,10 @@
 <div class="container mt-4">
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12 topo">
         <div class="card">
           <div class="card-body">
             <div class="card-header">
-              <button type="button" class="close direita" (click)="close()" aria-label="Close">
+              <button type="button" class="close_esquerda" (click)="close()" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             <form (ngSubmit)="onSubmit()">
@@ -101,15 +101,15 @@
               </div> -->
              <div>
               @if (!isEditing || car.make == null) {
-                <button type="button"  class="btn btn-primary btn-rounded"(click)="searchBrand()">Buscar Marca</button>
+                <button type="button"  class="btn btn-custom btn-rounded"(click)="searchBrand()">Buscar Marca</button>
              
             }@else {
-              <span class="text-primary">Make: {{car.make.name}} </span>
-              <button type="button" class="btn btn-warning btn-rounded" (click)="changeBrand()">Trocar Marca</button>
+              <span class="color_make">Make: {{car.make.name}} </span>
+              <button type="button" class="btn btn-custom btn-rounded" (click)="changeBrand()">Trocar Marca</button>
             }
              <br>
              <div class="d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary btn-rounded">Salvar</button>
+              <button type="submit" class="btn btn-custom btn-rounded">Salvar</button>
              </div>
              
              </div>
