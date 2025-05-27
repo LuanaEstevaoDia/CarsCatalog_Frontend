@@ -1,0 +1,54 @@
+.topo{
+    top: 18vh;
+    position: relative;
+
+    .table {
+    width: 100%;
+  }
+  
+  .table th,
+  .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .preco-column {
+    text-align: right; /* Alinha o conteúdo à direita */
+    width: 15%; /* Ajuste a largura conforme necessário */
+  }
+  .direita button {
+    min-width: 120px; /* Define um tamanho mínimo */
+    height: 40px; /* Mantém altura uniforme */
+  }
+  .direita {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+    justify-content: center; /* Opcional: Centraliza os botões */
+  }
+  .btn-novo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+  }
+  .btn-custom {
+  background-color: #00745d; /* Verde-lima */
+  color: white; /* Cor do texto */
+  border-radius: 20px; /* Mantém o formato arredondado */
+  font-weight: bold;
+  transition: 0.3s ease-in-out; /* Suaviza a transição */
+}
+.btn-custom:hover {
+  background-color: #00745d; /* Verde mais forte */
+  box-shadow: 0px 0px 10px #fffffe; /* Efeito de brilho */
+  transform: scale(1.05); /* Faz o botão crescer levemente */
+}
+.btn-delete{
+  background-color: #ebdccc;
+  color: white;
+}
+}

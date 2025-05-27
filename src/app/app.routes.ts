@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { NgModule } from '@angular/core';
+import { ItemsListComponent } from './components/items/items-list/items-list.component';
+import { ItemsDetailsComponent } from './components/items/items-details/items-details.component';
 
 export const routes: Routes = [
     {path: "", redirectTo: "login", pathMatch: 'full'},
@@ -23,6 +25,10 @@ export const routes: Routes = [
        {path:"marcas", component:MakelistComponent},
        {path:"marcas/new", component:MakedetailsComponent},
        {path:"marcas/edit/:id", component:MakedetailsComponent},
+
+       {path:"items", component:ItemsListComponent},
+       {path:"items/new", component:ItemsDetailsComponent},
+       {path:"items/edit/:id", component:ItemsDetailsComponent},
     ]},
 
 
