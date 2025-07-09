@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
   styleUrl: './items-details.component.scss'
 })
 export class ItemsDetailsComponent {
-  item: Item = new Item('', '');
+  item: Item = new Item('');
   isEditing = false;
 
   constructor(

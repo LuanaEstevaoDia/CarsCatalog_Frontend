@@ -22,7 +22,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 })
 export class ItemsListComponent {
   list: Item[] = [];
-  item = new Item('', '');
+  item = new Item('');
   router = inject(Router);
   itemsService = inject(ItemsService);
   itemForm: FormGroup;
@@ -33,7 +33,7 @@ export class ItemsListComponent {
     this.itemForm = this.fb.group({
       id: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
+   
     });
   
 
