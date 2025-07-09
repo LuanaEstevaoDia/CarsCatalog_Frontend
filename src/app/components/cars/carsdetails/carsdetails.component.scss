@@ -1,45 +1,50 @@
-
-.topo{
-    top: 18vh;
-    position: relative;
+.topo {
+  top: 18vh;
+  position: relative;
 }
-
 
 .close_esquerda {
   position: absolute;
-  left: 1250px; /* Ajuste conforme necessário */
-  top: 10px; /* Para alinhar na parte superior */
+  left: 1250px;
+  top: 10px;
   color: #050606;
   background-color: #00745d;
 }
 
+.btn-custom {
+  background-color: #00745d;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+ 
+}
+
+
+.btn-custom:hover {
+  background-color: #00745d;
+  box-shadow: 0px 0px 10px #fffffe;
+  transform: scale(1.05);
+  
+}
 
 .btn-custom {
-  background-color: #00745d; /* Verde-lima */
-  color: white; /* Cor do texto */
-  border-radius: 20px; /* Mantém o formato arredondado */
+  background-color: #00745d;
+  color: white;
+  border-radius: 20px;
   font-weight: bold;
-  transition: 0.3s ease-in-out; /* Suaviza a transição */
+  transition: 0.3s ease-in-out;
+ 
 }
+
 .btn-custom:hover {
-  background-color: #00745d; /* Verde mais forte */
-  box-shadow: 0px 0px 10px #fffffe; /* Efeito de brilho */
-  transform: scale(1.05); /* Faz o botão crescer levemente */
+  background-color: #00745d;
+  box-shadow: 0px 0px 10px #fffffe;
+  transform: scale(1.05);
 }
-.direita {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: red;
-  }
-  
-  .btn-spacing {
-    margin-top: 15px; /* Adiciona um espaço de 15px acima do botão */
-  }
-  .color_make{
-    color: rgba(0,87,116);
-  }
+
+.color_make {
+  color: rgba(0, 87, 116);
+
+
+}

@@ -1,0 +1,45 @@
+.topo {
+  top: 18vh;
+  position: relative;
+}
+
+.close_esquerda {
+  position: absolute;
+  left: 1250px;
+  top: 10px;
+  color: #050606;
+  background-color: #00745d;
+}
+
+.btn-custom {
+  background-color: #00745d;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+ 
+}
+
+
+.btn-custom:hover {
+  background-color: #00745d;
+  box-shadow: 0px 0px 10px #fffffe;
+  transform: scale(1.05);
+  
+}
+
+.btn-custom {
+  background-color: #00745d;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+ 
+}
+
+.btn-custom:hover {
+  background-color: #00745d;
+  box-shadow: 0px 0px 10px #fffffe;
+  transform: scale(1.05);
+}
+

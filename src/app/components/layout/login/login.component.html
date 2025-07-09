@@ -1,32 +1,45 @@
-<div class="container">
-  <div class="row">
+<body>
+  <div class="bg-wrapper">
     <div class="col-lg-4"></div>
 
-    <div class="col-lg-4 centralizar topo">
-      <div class="card">
+    <div class="col-lg-4">
+      <div class="card centralizar-button">
         <div class="card-body">
           <h3>Autentique-se:</h3>
           <br />
-          <div class="form-outline">
-            <input mdbInput type="text" id="usuario" class="form-control" [(ngModel)]="usuario" />
-            <label mdbLabel class="form-label form-label" for="usuario">Usuário</label>
-          </div>
+          <form (ngSubmit)="logar()" #formLogin="ngForm">
+            <div class="form-outline">
+              <input mdbInput type="usuario" id="usuario" class="form-control" name="usuario" [(ngModel)]="usuario"
+                required #usuarioInput="ngModel"
+                [ngClass]="{ 'is-invalid': usuarioInput.invalid && usuarioInput.touched }" />
+              <label mdbLabel class="form-label" for="usuario">usuario</label>
+              <div *ngIf="usuarioInput.invalid && usuarioInput.touched" class="invalid-feedback">
+                Usuário é obrigatório.
+              </div>
+            </div>
+            <br>
+            <div class="form-outline">
+              <input mdbInput type="password" id="senha" class="form-control" name="senha" [(ngModel)]="senha" required
+                #senhaInput="ngModel" [ngClass]="{ 'is-invalid': senhaInput.invalid && senhaInput.touched }" />
+              <label mdbLabel class="form-label" for="senha">senha</label>
+              <div *ngIf="senhaInput.invalid && senhaInput.touched" class="invalid-feedback">
+                Senha é obrigatória.
+              </div>
+            </div>
+            
+            <br />
+
+            <button type="submit" class="btn btn-custom btn-rounded" mdbRipple (click)="logar()">
+              Acessar
+            </button>
+
+          </form>
 
           <br>
-
-          <div class="form-outline">
-            <input mdbInput type="password" id="senha" class="form-control" [(ngModel)]="senha" />
-            <label mdbLabel class="form-label form-label" for="senha">Senha</label>
-          </div>
-
-          <br />
-
-          <button type="button" class="btn btn-custom btn-rounded" mdbRipple (click)="logar()">
-            Acessar
-          </button>
         </div>
       </div>
     </div>
     <div class="col-lg-4"></div>
   </div>
-</div>
+</body>
+

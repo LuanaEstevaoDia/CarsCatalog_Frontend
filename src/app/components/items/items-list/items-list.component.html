@@ -4,38 +4,59 @@
             <div class="card">
                 <div class="card-body">
 
-                     <h3>ACESSÓRIOS</h3>
+                    <h3>ACESSÓRIOS</h3>
 
-                     <div class="btn-novo">
-                  <button type="button" class="btn btn-custom btn-rounded" mdbRipple (click)="new()">
-                  Novo
-                  </button>
-              </div>
-               <br>
-              <table border="1" class="table table-striped">
+                   <div class="btn-novo" *ngIf="!hideBottons">
+                        <button type="button" class="btn btn-custom btn-rounded" mdbRipple (click)="new()">
+                            Novo
+                        </button>
+                    </div>
+                    <br>
+                    <table border="1" class="table table-striped">
 
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Descrição</th>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th class="descricao-column">Descrição</th>
+                                <td class="acao-column">Ação</td>
 
-                    </tr>
-                </thead>
-                <tbody>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <td class="direita-button">
+                                    @if(hideBottons){
+                                    <button type="button" class="btn btn-select btn-icon btn-sm" mdbRipple
+                                        (click)="select(item)" title="Selecionar">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                }
+                                @else {
+                            <tr *ngFor="let item of list">
+                                <td>{{item.id}}</td>
+                                <td>{{item.name}}</td>
+                                <td classe="descricao-column">{{item.description}}</td>
+                                <td>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button type="button" class="btn btn-table btn-custom " mdbRipple
+                                    (click)="edit(item, item.id)">
+                                    Editar
+                                </button>
+                                <button type="button" class="btn btn-table btn-delete " mdbRipple
+                                    (click)="deleteById(item)">
+                                    Deletar
+                                </button>
+                                </div>
+                            
+                            </td>
 
-                    <tr *ngFor="let item of list">
-                        <th>{{item.id}}</th>
-                        <th>{{item.name}}</th>
-                        <th>{{item.description}}</th>
+                            </tr>
+                        }
+                            
 
+                        </tbody>
 
-
-                    </tr>
-
-                </tbody>
-
-              </table>
+                    </table>
                 </div>
             </div>
         </div>

@@ -1,0 +1,19 @@
+     <!-- Fonte / Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- MDBootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" />
+
+    <body>
+    <div class="modal-header">
+        <h5 class="modal-title">Selecionar Acessório</h5>
+        <button type="button" class="btn-close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+        <app-items-list [hideBottons]="true" (return)="selectItem($event)"></app-items-list>
+    </div>
+     <!-- MDBootstrap JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+</body>
+

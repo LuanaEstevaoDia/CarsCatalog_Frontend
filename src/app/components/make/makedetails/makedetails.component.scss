@@ -1,12 +1,24 @@
 .topo{
-    top: 18vh;
-    position: relative;
+    top: 30vh;
+    position: absolute;
+    
+}
+.container {
+  max-width: 100vw;
+  height: 100px; /* Define uma altura fixa */
+  padding: 10px; /* Espaçamento interno */
+  margin: auto;  /* Centraliza o contêiner */
+  border-collapse: collapse;
 }
 
+.table th, .table td {
+  text-align: center;
+  padding: 5px;
+}
 
 .close_esquerda {
   position: absolute;
-  left: 1250px; /* Ajuste conforme necessário */
+  left: 1365px; /* Ajuste conforme necessário */
   top: 10px; /* Para alinhar na parte superior */
   color: #050606;
   background-color: #00745d;

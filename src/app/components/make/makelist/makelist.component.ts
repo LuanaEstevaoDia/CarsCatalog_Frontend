@@ -18,7 +18,7 @@ export class MakelistComponent {
   list: Make[] = [];
     makeEdit : Make = new Make("", "");
     @Input("hideBottons") hideBottons : boolean = false;
-    @Output() return = new EventEmitter<Make>();//evento para enviar a marca selecionada
+    @Output("return") return = new EventEmitter<Make>();//evento para enviar a marca selecionada
     
     makeService = inject(MakeService); 
     router = inject(Router)

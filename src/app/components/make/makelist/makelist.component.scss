@@ -1,20 +1,101 @@
-.topo{
-    top: 18vh;
-    position: relative;
+.topo {
+  top: 18vh;
+  position: relative;
 }
+
+.table {
+  width: 100%;
+}
+
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.direita-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  height: 65px;
+  gap: 10px;
+
+}
+.btn-table {
+  width: 100px;      
+  height: 40px;
+  font-size: 14px;
+  padding: 0;
+  border-radius: 20px;
+}
+
+.btn-novo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+
+}
+
 .btn-custom {
-  background-color: #00745d; /* Verde-lima */
-  color: white; /* Cor do texto */
-  border-radius: 20px; /* Mantém o formato arredondado */
-  font-weight: bold;
-  transition: 0.3s ease-in-out; /* Suaviza a transição */
-}
-.btn-custom:hover {
-  background-color: #00745d; /* Verde mais forte */
-  box-shadow: 0px 0px 10px #fffffe; /* Efeito de brilho */
-  transform: scale(1.05); /* Faz o botão crescer levemente */
-}
-.btn-delete{
-  background-color: #ebdccc;
+  background-color: #00745d;
   color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+
+}
+
+.btn-custom:hover {
+  background-color: #00745d;
+  box-shadow: 0px 0px 10px #fffffe;
+  transform: scale(1.05);
+
+}
+
+.btn-delete {
+  background-color: #D32F2F; 
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  padding: 6px 12px;
+  transition: 0.2s ease-in-out;
+}
+
+.btn-delete:hover {
+  background-color: #B71C1C; 
+  box-shadow: 0 0 8px rgba(211, 47, 47, 0.6); 
+  transform: scale(1.03);
+}
+
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #00745d; // color2
+  color: #fffffe;            // color5
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  border: none;
+
+  &:hover {
+    background-color: #005774; // color1
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(0, 116, 93, 0.2); // destaque suave
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px #95a67d; // color3 em foco
+  }
 }

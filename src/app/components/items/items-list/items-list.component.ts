@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Item } from '../../../models/item';
 import { ItemsService } from '../../../services/items.service';
@@ -16,14 +22,36 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 })
 export class ItemsListComponent {
   list: Item[] = [];
-  itemEdit = new Item("", "");
+  item = new Item('', '');
   router = inject(Router);
   itemsService = inject(ItemsService);
+  itemForm: FormGroup;
+  @Input("hideBottons") hideBottons : boolean = false;
+  @Output("return") return = new EventEmitter<Item>();//evento para enviar a item selecionada
 
+  constructor(private fb: FormBuilder) {
+    this.itemForm = this.fb.group({
+      id: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+    });
+  
 
-  ngOnInit() {
-  this.getAllItems();
-}
+    this.getAllItems();
+    let itemNew = history.state.itemNew;
+    let itemEdit = history.state.itemEdit;
+
+    if (itemNew != null) {
+      this.list.push(itemNew);
+    }
+    if (itemEdit != null) {
+      let indice = this.list.findIndex((x) => {
+        return x.id == itemEdit.id;
+      });
+      this.list[indice] = itemEdit;
+    
+    }
+  }
 
   getAllItems() {
     console.log('Listagem de items!');
@@ -42,7 +70,6 @@ export class ItemsListComponent {
       },
     });
   }
-
   deleteById(item: Item) {
     console.log('Acesso no método de deletar');
     Swal.fire({
@@ -83,4 +110,14 @@ export class ItemsListComponent {
     console.log('Método para buscar a rota para salvar acessório!');
     this.router.navigate(['admin/items/new']);
   }
+  edit(item: Item, id: number) {
+    this.router.navigate([`admin/items/edit/${id}`]);
+  }
+  resetForm() {
+    this.itemForm.reset();
+  }
+   select(item:Item){
+        this.return.emit(item);
+}
+
 }

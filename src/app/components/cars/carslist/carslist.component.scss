@@ -1,54 +1,74 @@
-.topo{
-    top: 18vh;
-    position: relative;
+.topo {
+  top: 18vh;
+  position: relative;
 }
 
 .table {
-    width: 100%;
-  }
-  
-  .table th,
-  .table td {
-    text-align: center;
-    vertical-align: middle;
-  }
-  
-  .preco-column {
-    text-align: right; /* Alinha o conteúdo à direita */
-    width: 15%; /* Ajuste a largura conforme necessário */
-  }
-  .direita button {
-    min-width: 120px; /* Define um tamanho mínimo */
-    height: 40px; /* Mantém altura uniforme */
-  }
-  .direita {
-    display: flex;
-    gap: 10px; /* Espaço entre os botões */
-    justify-content: center; /* Opcional: Centraliza os botões */
-  }
-  .btn-novo {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: red;
-  }
-  .btn-custom {
-  background-color: #00745d; /* Verde-lima */
-  color: white; /* Cor do texto */
-  border-radius: 20px; /* Mantém o formato arredondado */
-  font-weight: bold;
-  transition: 0.3s ease-in-out; /* Suaviza a transição */
+  width: 100%;
 }
-.btn-custom:hover {
-  background-color: #00745d; /* Verde mais forte */
-  box-shadow: 0px 0px 10px #fffffe; /* Efeito de brilho */
-  transform: scale(1.05); /* Faz o botão crescer levemente */
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
 }
-.btn-delete{
-  background-color: #ebdccc;
+
+.direita-button {
+  display: flex;
+  min-width: 120px;
+  /* Tamanho mínimo */
+  height: 65px;
+  /* Mantém altura uniforme */
+  gap: 10px;
+
+}
+.btn-table {
+  width: 100px;       /* Ou o tamanho que desejar */
+  height: 40px;
+  font-size: 14px;
+  padding: 0;
+  border-radius: 20px;
+}
+
+.btn-novo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+
+}
+
+.btn-custom {
+  background-color: #00745d;
   color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+
+}
+
+.btn-custom:hover {
+  background-color: #00745d;
+  box-shadow: 0px 0px 10px #fffffe;
+  transform: scale(1.05);
+
+}
+
+.btn-delete {
+  background-color: #D32F2F; 
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  padding: 6px 12px;
+  transition: 0.2s ease-in-out;
+}
+
+.btn-delete:hover {
+  background-color: #B71C1C; 
+  box-shadow: 0 0 8px rgba(211, 47, 47, 0.6); 
+  transform: scale(1.03);
 }

@@ -1,4 +1,11 @@
-import { Component, EventEmitter, inject, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from '../../../services/car.service';
 import { Car } from '../../../models/car';
@@ -6,48 +13,44 @@ import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Make } from '../../../models/make';
-import { MakelistComponent } from "../../make/makelist/makelist.component";
+import { MakelistComponent } from '../../make/makelist/makelist.component';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { TemplateRef } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { CarslistComponent } from '../carslist/carslist.component';
+import { MakeModalComponent } from '../../../modals/make-modal/make-modal.component';
+import { CommonModule } from '@angular/common';
+import { ItemsComponent } from '../../../modals/items/items.component';
+import { Item } from '../../../models/item';
 
 @Component({
   selector: 'app-carsdetails',
   standalone: true,
-  imports: [FormsModule, MdbFormsModule, MakelistComponent],
+  imports: [FormsModule, MdbFormsModule,CommonModule],
   templateUrl: './carsdetails.component.html',
   styleUrls: ['./carsdetails.component.scss'],
 })
 export class CarsdetailsComponent implements OnInit {
-  car: Car = new Car('', 0, '', 0, new Make('', ''));// Instancia inicial com o relacionamento com marca
+  car: Car = new Car('', 0, '', 0, new Make('', '')); // Instancia inicial com o relacionamento com marca
   @Output() onUpdateListCars = new EventEmitter<void>();
   isEditing = false; //verifica e estamos criando ou editando um carro.
-  
-  
 
-   //ELEMENTOS DA MODAL
-   modalService = inject(MdbModalService); //para abrir a modal
-   @ViewChild('modalMake') modalMake!: TemplateRef<any>;
-   modalRef!:MdbModalRef<any>;
-   
+  //ELEMENTOS DA MODAL
+  modalService = inject(MdbModalService); //para abrir a modal
+  modalRef!: MdbModalRef<any>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private carService: CarService,
-   
+    private carService: CarService
   ) {}
 
   ngOnInit(): void {
     // Obtém o ID do carro na rota e busca os dados caso exista
-    
+
     const id = this.route.snapshot.params['id'];
     if (id) {
       this.getCarById(id);
-      this.isEditing = true; //existe um carro(vamos editar)
-    }else{
-      this.isEditing = false;//temos que criar um novo carro
+    } else {
+      this.isEditing = false; //temos que criar um novo carro
     }
   }
 
@@ -57,6 +60,7 @@ export class CarsdetailsComponent implements OnInit {
     this.carService.getCarById(id).subscribe({
       next: (carData) => {
         this.car = carData;
+        this.isEditing = true;
         console.log('Carro carregado:', this.car);
       },
       error: (err) => {
@@ -73,7 +77,7 @@ export class CarsdetailsComponent implements OnInit {
   // Método para salvar ou atualizar o carro
   save(): void {
     console.log('Método save chamado. Dados do carro:', this.car);
-    console.log("Id do carro", this.car.id);
+    console.log('Id do carro', this.car.id);
 
     if (this.car.id) {
       // Atualização do carro
@@ -85,22 +89,12 @@ export class CarsdetailsComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Ok',
           });
-          
+
           this.router.navigate([`admin/carros/edit/${this.car.id}`], {
             state: { carEdit: this.car },
-            
-
-            
           });
-       
+
           this.close();
-          
-           
-           
-          
-           
-         
-          
         },
         error: (err) => {
           console.error('Erro ao atualizar veículo:', err);
@@ -116,10 +110,9 @@ export class CarsdetailsComponent implements OnInit {
       this.carService.saveCar(this.car).subscribe({
         next: (response: any) => {
           console.log('Novo carro salvo com sucesso:', response.message);
-          console.log("Objeto car dentro da resposta",response.car);
-          console.log("Objeto ID", response.car.id);
+          console.log('Objeto car dentro da resposta', response.car);
+          console.log('Objeto ID', response.car.id);
           this.car.id = response.car.id;
-          
 
           Swal.fire({
             title: response.message,
@@ -128,18 +121,9 @@ export class CarsdetailsComponent implements OnInit {
           });
           this.router.navigate([`admin/carros/edit/${this.car.id}`], {
             state: { carNew: this.car },
-            
-        
-           
           });
 
-          
-           this.close();
-        
-
-       
-
-           
+          this.close();
         },
         error: (err) => {
           console.error('Erro ao salvar veículo:', err);
@@ -157,43 +141,71 @@ export class CarsdetailsComponent implements OnInit {
   onSubmit(): void {
     console.log('Submissão iniciada.');
     this.save();
-   
-   
-    
-  } 
+  }
 
   // Método para navegar e fechar o formulário
   close(): void {
     console.log('Fechando formulário e navegando.');
     this.router.navigate(['/admin/carros']);
   }
-  searchBrand(): void{
-    //buscar marca
-    console.log("Buscando marca");
-    this.modalRef = this.modalService.open(this.modalMake,{modalClass: "modal-lg"});
+  searchBrand(): void {
+    this.modalRef = this.modalService.open(MakeModalComponent, {
+      modalClass: 'modal-lg modal-offset-top',
+      backdrop: true,
+      keyboard: false,
+    });
 
-    
+    this.modalRef.onClose.subscribe((selectedMake: Make) => {
+      if (selectedMake && selectedMake.id) {
+        this.car.make = selectedMake;
+      }
+    });
+  }
 
+  changeBrand(): void {
+    this.searchBrand();
   }
-  changeBrand(): void{
-     this.modalRef = this.modalService.open(this.modalMake,{modalClass: "modal-lg"});
-  }
+
   returnMake(make: Make) {
     if (!make.id) {
-      console.error("Erro: A marca não tem um ID válido!");
+      console.error('Erro: A marca não tem um ID válido!');
       return; // Interrompe a execução se o ID não estiver presente
     }
-  
-    this.car.make = make; // Agora a marca tem um ID válido
+
+    this.car.make = make; // marca tem um ID válido
     this.modalRef.close(); // Fecha a modal
   }
 
-  //método que deixa deletar ou corrigir uma marca caso não tenha vículo com nenhum carro
-  carLink(){
-    if(this.car.model == null || !this.car.model){
-      console.log("A marca não está vínculada")
-      
+  //método que deixa deletar ou corrigir uma marca caso não tenha vínculo com nenhum carro
+  carLink() {
+    if (this.car.model == null || !this.car.model) {
+      console.log('A marca não está vínculada');
+    }
+  }
+  returnItem(item: Item) {
+    if (!item.id) {
+      console.error('Erro: Item não tem um ID válido!');
+      return; // Interrompe a execução se o ID não estiver presente
     }
 
+    //this.car.make = make; // marca tem um ID válido
+    this.modalRef.close(); // Fecha a modal
+  }
+  searchItem(): void {
+    this.modalRef = this.modalService.open(ItemsComponent, {
+      modalClass: 'modal-lg modal-offset-top',
+      backdrop: true,
+      keyboard: false,
+    });
+
+    this.modalRef.onClose.subscribe((selectedItem: Item) => {
+      if (selectedItem && selectedItem.id) {
+        // this.car.make = selectedMake; ver como vai receber
+      }
+    });
+  }
+
+  changeItem(): void {
+    this.searchBrand();
   }
 }

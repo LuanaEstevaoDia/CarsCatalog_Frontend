@@ -9,7 +9,7 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal'; // Adicione isso aqui
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { MakelistComponent } from './components/make/makelist/makelist.component';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +21,7 @@ export const appConfig: ApplicationConfig = {
       MdbFormsModule,
       ReactiveFormsModule,
       MdbModalModule, // Aqui está a adição do módulo de modal!
+      
     
     ),
     provideHttpClient()

@@ -1,3 +1,4 @@
+import { Item } from "./item";
 import { Make } from "./make";
 
 export class Car {
@@ -7,6 +8,7 @@ export class Car {
     chassi:string;
     price:number;
     make!:Make;
+    items: Item[]= [];
     constructor(model:string, years: number,  chassi:string, price:number, make: Make){
       
         this.model = model;

@@ -1,60 +1,60 @@
 <div class="container mt-4">
     <div class="row">
-      <div class="col-lg-12 topo">
-        <div class="card">
-          <div class="card-body">
-              <h3>MARCAS</h3>
-  
-              <div class="direita">
-                  <button type="button" class="btn btn-custom btn-rounded" mdbRipple (click)="new()">
-                  Novo
-                  </button>
-              </div>
-              
-              <br>
-              <table border="1" class="table table-striped">
-                  <thead>
-                      <tr>
-                          <th>ID</th>
-                          <th>Marca</th>
-                          <th>Cnpj</th>
-                          
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let make of list">
-                          <td>{{make.id}}</td>
-                          <td>{{make.name}}</td>
-                          <td>{{make.cnpj}}</td>
-                          
-                
-                         <td class="direita">
-                            @if(hideBottons){
-                                <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="select(make)">
-                                    Selecionar
-                                </button>
+        <div class="col-lg-12 topo">
+            <div class="card">
+                <div class="card-body">
+                    <h3>MARCAS</h3>
+
+                    <div class="btn-novo" *ngIf="!hideBottons">
+                        <button type="button" class="btn btn-custom btn-rounded" mdbRipple (click)="new()">
+                            Novo
+                        </button>
+                    </div>
+                    <table border="1" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Marca</th>
+                                <th>Cnpj</th>
+                                <th>Ações</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let make of list">
+                                <td>{{make.id}}</td>
+                                <td>{{make.name}}</td>
+                                <td>{{make.cnpj}}</td>
 
 
-                            }@else{
-                               
+                                <td class="direita-button">
+                                    @if(hideBottons){
+                                    <button type="button" class="btn btn-select btn-icon btn-sm" mdbRipple
+                                        (click)="select(make)" title="Selecionar">
+                                        <i class="fas fa-check"></i>
+                                    </button>
 
-                            
-                                <button type="button" class="btn btn-custom btn-rounded" mdbRipple (click)="edit(make,make.id)">
-                                    Editar
-                                </button>
-                                <button type="button" class="btn btn-delete btn-rounded" mdbRipple (click)="deleteById(make)">
-                                    Deletar
-                                </button>
 
-                            }
-                              
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
+
+                                    }@else{
+
+                                    <button type="button" class="btn btn-table btn-custom" mdbRipple
+                                        (click)="edit(make,make.id)">
+                                        Editar
+                                    </button>
+                                    <button type="button" class="btn btn-table btn-delete" mdbRipple
+                                        (click)="deleteById(make)">
+                                        Deletar
+                                    </button>
+
+                                    }
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  
+</div>
